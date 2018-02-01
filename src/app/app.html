@@ -1,21 +1,15 @@
 <ion-nav [root]="rootPage" #nav></ion-nav>
 
 <ion-menu [content]="nav" persistent="true" side="right">
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>Pages</ion-title>
-        </ion-toolbar>
-    </ion-header>
-
     <ion-content>
         <ion-list>
-            <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-                <ion-icon item-start name="{{ p.icon }}"></ion-icon>
-                {{ p.title }}
+            <button ion-item *ngFor="let page of pages" (click)="openPage(page)">
+                <ion-icon color="primary" item-start name="{{ page.icon }}"></ion-icon>
+                {{ page.title }}
             </button>
 
             <button ion-item menuClose detail-none>
-                <ion-icon item-start name="ios-close-circle-outline"></ion-icon>
+                <ion-icon color="primary" item-start name="ios-close-circle-outline"></ion-icon>
                 Close Menu
             </button>
         </ion-list>
