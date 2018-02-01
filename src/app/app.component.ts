@@ -21,9 +21,9 @@ export class MyApp {
         });
 
         this.pages = [
-            {title: 'Home', icon: 'ios-home-outline', component: HomePage},
-            {title: 'Manage Locations', icon: 'ios-map-outline', component: ManageLocationsPage},
-            {title: 'Reports', icon: 'ios-trending-up', component: ReportsPage}
+            {title: 'Home', icon: 'ios-home', component: HomePage},
+            {title: 'Manage Locations', icon: 'ios-map', component: ManageLocationsPage},
+            {title: 'Reports', icon: 'md-pie', component: ReportsPage}
         ];
     }
 
