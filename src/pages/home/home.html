@@ -11,6 +11,20 @@
 </ion-header>
 
 
-<ion-content padding>
-    We'll add some cool rain reporting features here soon!
+<ion-content padding *ngIf="promptLocationAdd">
+    <h5>Hi there!</h5>
+
+    <p>
+        It looks like you're new here! Before you can start reporting rainfall, please capture at least one location.
+        Every time rainfall is reported, the location where the rainfall took place must be selected.
+    </p>
+
+    <button margin-top icon-left ion-button block color="secondary">
+        <ion-icon name="ios-map"></ion-icon>
+        Add Location
+    </button>
+</ion-content>
+
+<ion-content padding *ngIf="!promptLocationAdd">
+    We'll add a cool calendar here soon!
 </ion-content>

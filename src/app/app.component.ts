@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-
+import {Page} from '../model/pages/page.model';
 import {HomePage} from '../pages/home/home';
 import {ManageLocationsPage} from '../pages/manage_locations/manage_locations';
 import {ReportsPage} from '../pages/reports/reports';
@@ -11,8 +11,8 @@ import {ReportsPage} from '../pages/reports/reports';
     templateUrl: 'app.html'
 })
 export class MyApp {
-    rootPage: any = HomePage;
-    pages: Array<{ title: string, icon: string, component: any }>;
+    public rootPage: any = HomePage;
+    public pages: Array<Page>;
 
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
@@ -21,9 +21,9 @@ export class MyApp {
         });
 
         this.pages = [
-            {title: 'Home', icon: 'ios-home', component: HomePage},
-            {title: 'Manage Locations', icon: 'ios-map', component: ManageLocationsPage},
-            {title: 'Reports', icon: 'md-pie', component: ReportsPage}
+            new Page('Home', 'ios-home', HomePage),
+            new Page('Manage Locations', 'ios-map', ManageLocationsPage),
+            new Page('Reports', 'md-pie', ReportsPage)
         ];
     }
 
