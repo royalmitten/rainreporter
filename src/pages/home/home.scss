@@ -9,7 +9,7 @@ page-home {
     }
 
     .days {
-      height: calc(100vh - 170px);
+      height: calc(100vh - 185px);
 
       .not-current-month {
         color: map-get($colors, disabled);

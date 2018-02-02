@@ -28,15 +28,15 @@
     </ion-card>
 </ion-content>
 
-<ion-content padding>
+<ion-content padding-top>
     <div class="calender">
         <ion-grid>
-            <ion-row class="header">
-                <ion-col text-left col-2 (click)="goToLastMonth()">
+            <ion-row class="header" margin-bottom text-center>
+                <ion-col col-2 (click)="goToLastMonth()">
                     <ion-icon name="md-arrow-round-back"></ion-icon>
                 </ion-col>
-                <ion-col text-center col-8>{{currentMonth}} {{currentYear}}</ion-col>
-                <ion-col text-right col-2 (click)="goToNextMonth()">
+                <ion-col col-8>{{currentMonth}} {{currentYear}}</ion-col>
+                <ion-col col-2 (click)="goToNextMonth()">
                     <ion-icon name="md-arrow-round-forward"></ion-icon>
                 </ion-col>
             </ion-row>
