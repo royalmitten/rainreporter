@@ -6,7 +6,7 @@ import {NavController} from 'ionic-angular';
     templateUrl: 'manage_locations.html'
 })
 export class ManageLocationsPage {
-    constructor(public navCtrl: NavController) {
+    constructor(navCtrl: NavController) {
 
     }
 }

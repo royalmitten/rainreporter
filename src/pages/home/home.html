@@ -12,19 +12,62 @@
 
 
 <ion-content padding *ngIf="promptLocationAdd">
-    <h5>Hi there!</h5>
+    <ion-card>
+        <ion-card-header color="primary">
+            Hi there! Welcome!
+        </ion-card-header>
+        <ion-card-content>
+            It looks like you're new here. Before you can start reporting rainfall, please capture at least one location.
+            Every time rainfall is reported, the location where the rainfall took place must be selected.
 
-    <p>
-        It looks like you're new here! Before you can start reporting rainfall, please capture at least one location.
-        Every time rainfall is reported, the location where the rainfall took place must be selected.
-    </p>
-
-    <button margin-top icon-left ion-button block color="secondary">
-        <ion-icon name="ios-map"></ion-icon>
-        Add Location
-    </button>
+            <button margin-top icon-left ion-button block color="secondary">
+                <ion-icon name="ios-map"></ion-icon>
+                Add Location
+            </button>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
 
-<ion-content padding *ngIf="!promptLocationAdd">
-    We'll add a cool calendar here soon!
+<ion-content padding>
+    <div class="calender">
+        <ion-grid>
+            <ion-row class="header">
+                <ion-col text-left col-2 (click)="goToLastMonth()">
+                    <ion-icon name="md-arrow-round-back"></ion-icon>
+                </ion-col>
+                <ion-col text-center col-8>{{currentMonth}} {{currentYear}}</ion-col>
+                <ion-col text-right col-2 (click)="goToNextMonth()">
+                    <ion-icon name="md-arrow-round-forward"></ion-icon>
+                </ion-col>
+            </ion-row>
+            <ion-row class="header" text-center>
+                <ion-col>Su</ion-col>
+                <ion-col>Mo</ion-col>
+                <ion-col>Tu</ion-col>
+                <ion-col>We</ion-col>
+                <ion-col>Th</ion-col>
+                <ion-col>Fr</ion-col>
+                <ion-col>Sa</ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+            <ion-row class="days" text-center>
+                <ion-col *ngFor="let day of daysInLastMonth" class="not-current-month">{{day}}</ion-col>
+
+                <ion-col *ngFor="let day of daysInThisMonth">
+                    <ion-badge mode="ios" color="secondary" *ngIf="currentDate === day">{{day}}</ion-badge>
+                    <span *ngIf="currentDate !== day">{{day}}</span>
+                </ion-col>
+
+                <ion-col *ngFor="let day of daysInNextMonth" class="not-current-month">{{day}}</ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <ion-fab right bottom>
+        <button ion-fab mini color="secondary">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

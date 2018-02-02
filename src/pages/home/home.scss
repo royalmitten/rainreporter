@@ -1,3 +1,33 @@
-page-home {
+@import "../../theme/variables";
 
+page-home {
+  .calender {
+    .header {
+      font-weight: bold;
+      color: map-get($colors, primary);
+      height: 30px;
+    }
+
+    .days {
+      height: calc(100vh - 170px);
+
+      .not-current-month {
+        color: map-get($colors, disabled);
+      }
+
+      .current-day {
+        font-weight: bold;
+      }
+
+      ion-col {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 8.33333%;
+        -ms-flex: 0 0 8.33333%;
+        flex: 0 0 14.285714285714286%;
+        width: 14.285714285714286%;
+        max-width: 14.285714285714286%;
+      }
+    }
+  }
 }
+

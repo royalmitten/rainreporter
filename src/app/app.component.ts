@@ -11,8 +11,8 @@ import {ReportsPage} from '../pages/reports/reports';
     templateUrl: 'app.html'
 })
 export class MyApp {
-    public rootPage: any = HomePage;
-    public pages: Array<Page>;
+    rootPage: any = HomePage;
+    pages: Array<Page>;
 
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
