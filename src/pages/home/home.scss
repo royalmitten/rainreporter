@@ -1,6 +1,11 @@
 @import "../../theme/variables";
 
 page-home {
+  h1 {
+    font-size: 1.7rem;
+    color: map-get($colors, primary);
+  }
+
   .calender {
     .header {
       font-weight: bold;
