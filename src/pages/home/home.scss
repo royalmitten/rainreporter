@@ -14,7 +14,7 @@ page-home {
     }
 
     .days {
-      height: calc(100vh - 185px);
+      height: calc(100vh - 185px); //185px has already been taken (header + top content)
 
       .not-current-month {
         color: map-get($colors, disabled);

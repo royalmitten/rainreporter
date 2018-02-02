@@ -1,13 +1,15 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
+import {ModalController} from 'ionic-angular';
+import {LocationDetailsPage} from '../location_details/location_details';
 
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
 })
 export class HomePage {
-    promptLocationAdd: boolean = false;
+    promptLocationAdd: boolean = true;
     locations: Array<any>; //@todo, use a location class for this
     date: Date;
     daysInThisMonth: Array<number>;
@@ -18,7 +20,7 @@ export class HomePage {
     currentYear: number;
     currentDate: number;
 
-    constructor(navCtrl: NavController, private storage: Storage) {
+    constructor(private navCtrl: NavController, private modalCtrl: ModalController, private storage: Storage) {
     }
 
     ionViewWillEnter() {
@@ -78,5 +80,10 @@ export class HomePage {
     goToNextMonth() {
         this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0);
         this.getDaysOfMonth();
+    }
+
+    addLocation() {
+        let modal = this.modalCtrl.create(LocationDetailsPage);
+        modal.present();
     }
 }
