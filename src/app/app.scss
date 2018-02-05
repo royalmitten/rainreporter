@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,35 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@import "../theme/variables";
+
+p {
+  font-size: 1.6rem;
+  margin: 0
+}
+
+.footer-buttons {
+  button {
+    min-height: 56px;
+    margin: 0;
+  }
+
+  .column-positive {
+    background: map-get($colors, secondary);
+  }
+
+  .column-danger {
+    background: map-get($colors, danger);
+  }
+}
+
+.toast-error .toast-container {
+  background: map-get($colors, danger);
+  min-height: 60px;
+}
+
+.toast-success .toast-container {
+  background: map-get($colors, success);
+  min-height: 60px
+}

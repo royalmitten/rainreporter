@@ -11,16 +11,44 @@
     </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-   Hi!
+<ion-content>
+    <form>
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" stacked>Location Name</ion-label>
+                <ion-input type="text" [(ngModel)]="location.name" name="name" placeholder="E.g. Home or Work"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Country</ion-label>
+                <ion-input type="text" [(ngModel)]="location.country" name="country" placeholder="E.g. South Africa"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>City</ion-label>
+                <ion-input type="text" [(ngModel)]="location.city" name="city" placeholder="E.g. Johannesburg"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Suburb</ion-label>
+                <ion-input type="text" [(ngModel)]="location.suburb" name="suburb" placeholder="E.g. Moreletapark"></ion-input>
+            </ion-item>
+        </ion-list>
+    </form>
 </ion-content>
 
-<ion-footer no-border>
-    <ion-toolbar color="secondary">
-        <button ion-button icon-left block clear color="light">
-            <ion-icon name="md-checkmark"></ion-icon>
-            Save
-        </button>
-    </ion-toolbar>
+<ion-footer no-border no-padding>
+    <ion-grid no-padding>
+        <ion-row color="secondary" class="footer-buttons">
+            <ion-col class="column-danger" *ngIf="location.id">
+                <button ion-button icon-left block clear color="light">
+                    <ion-icon name="md-trash"></ion-icon>
+                    Delete
+                </button>
+            </ion-col>
+            <ion-col class="column-positive">
+                <button ion-button icon-left block clear color="light" (click)="updateLocation()">
+                    <ion-icon name="md-checkmark"></ion-icon>
+                    Save
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-footer>

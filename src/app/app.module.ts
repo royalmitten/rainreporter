@@ -17,7 +17,10 @@ import {LocationStorage} from '../services/location/location.storage.service';
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp, {
+            scrollAssist: false,
+            autoFocusAssist: false
+        }),
         IonicStorageModule.forRoot()
     ],
     bootstrap: [IonicApp],
