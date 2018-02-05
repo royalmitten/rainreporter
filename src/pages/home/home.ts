@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {LoadingController, NavController} from 'ionic-angular';
 import {LocationStorage} from '../../services/location/location.storage.service';
 import {ModalController} from 'ionic-angular';
 import {LocationDetailsPage} from '../location_details/location_details';
@@ -9,7 +9,7 @@ import {LocationDetailsPage} from '../location_details/location_details';
     templateUrl: 'home.html'
 })
 export class HomePage {
-    promptLocationAdd: boolean = true;
+    promptLocationAdd: boolean;
     locations: Array<any>; //@todo, use a location class for this
     date: Date;
     daysInThisMonth: Array<number>;
@@ -20,7 +20,12 @@ export class HomePage {
     currentYear: number;
     currentDate: number;
 
-    constructor(private navCtrl: NavController, private modalCtrl: ModalController, private locationStorage: LocationStorage) {
+    constructor(
+        private navCtrl: NavController,
+        private modalCtrl: ModalController,
+        private loadingCtrl: LoadingController,
+        private locationStorage: LocationStorage
+    ) {
     }
 
     ionViewWillEnter() {
@@ -28,10 +33,18 @@ export class HomePage {
         this.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         this.getDaysOfMonth();
 
+        let loader = this.loadingCtrl.create({
+            content: 'Loading...'
+        });
+
+        loader.present();
+
         this.locationStorage.hasLocation().then(() => {
             this.promptLocationAdd = false;
+            loader.dismiss();
         }, () => {
-            this.promptLocationAdd = false;
+            this.promptLocationAdd = true;
+            loader.dismiss();
         });
     }
 
