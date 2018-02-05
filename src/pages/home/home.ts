@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {Storage} from '@ionic/storage';
+import {LocationStorage} from '../../services/location/location.storage.service';
 import {ModalController} from 'ionic-angular';
 import {LocationDetailsPage} from '../location_details/location_details';
 
@@ -20,7 +20,7 @@ export class HomePage {
     currentYear: number;
     currentDate: number;
 
-    constructor(private navCtrl: NavController, private modalCtrl: ModalController, private storage: Storage) {
+    constructor(private navCtrl: NavController, private modalCtrl: ModalController, private locationStorage: LocationStorage) {
     }
 
     ionViewWillEnter() {
@@ -28,10 +28,10 @@ export class HomePage {
         this.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         this.getDaysOfMonth();
 
-        this.storage.get('locations').then((result) => {
-            if (result) {
-                this.promptLocationAdd = false;
-            }
+        this.locationStorage.hasLocation().then(() => {
+            this.promptLocationAdd = false;
+        }, () => {
+            this.promptLocationAdd = false;
         });
     }
 
