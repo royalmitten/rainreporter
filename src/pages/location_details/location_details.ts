@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {LoadingController, ToastController, ViewController} from 'ionic-angular';
 import {Location} from '../../model/location/location.model'
+import {LocationStorage} from "../../services/location/location.storage.service";
 
 @Component({
     selector: 'location-details',
@@ -13,24 +14,37 @@ export class LocationDetailsPage {
         public viewCtrl: ViewController,
         private toastCtrl: ToastController,
         private loadingCtrl: LoadingController,
+        private locationStorage: LocationStorage
     ) {
     }
 
     updateLocation() {
+        // this validation can be handled better with Angular's form groups
+        if (!this.location.name || !this.location.country || !this.location.city || !this.location.suburb) {
+            this.showError('Please complete all the location fields.');
+
+            return;
+        }
+
         let loader = this.loadingCtrl.create({
             content: 'Saving...'
         });
 
         loader.present();
 
+        this.locationStorage.saveLocation(this.location).then(() => {
+            loader.dismiss();
+            this.showSuccess();
 
-
-        this.showError();
+        }, () => {
+            loader.dismiss();
+            this.showError('Failed to save location. Please try again.');
+        });
     }
 
-    private showError() {
+    private showError(message: string) {
         let toast = this.toastCtrl.create({
-            message: 'Please complete all the location fields.',
+            message: message,
             cssClass: 'toast-error',
             showCloseButton: true,
             closeButtonText: 'Got it!',
@@ -48,5 +62,9 @@ export class LocationDetailsPage {
         });
 
         toast.present()
+
+        toast.onDidDismiss(() => {
+            //go back to the previous page
+        });
     }
 }

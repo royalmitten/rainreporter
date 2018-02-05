@@ -27,25 +27,26 @@ export class LocationStorage {
         return this.storage.get(this.storageKey)
     }
 
-    saveLocation(location: Location): Promise<boolean> | void {
-        this.getLocations().then((result) => {
-            let locations: Array<any>;
+    saveLocation(location: Location): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.getLocations().then((result) => {
+                let locations: Array<any> = [];
 
-            if (result) {
-                locations = result;
-            }
+                if (result) {
+                    locations = result;
+                }
 
-            locations.push(location);
+                console.log(locations);
 
-            return new Promise<boolean>((resolve, reject) => {
+                locations.push(location);
+
                 this.storage.set(this.storageKey, locations).then(() => {
-                    resolve(true)
+                    resolve(true);
                 }, () => {
                     reject(false);
                 });
-            });
-        }, () => {
-            return new Promise<boolean>((resolve, reject) => {
+
+            }, () => {
                 reject(false);
             });
         });
