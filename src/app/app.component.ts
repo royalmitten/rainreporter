@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Platform} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Menu, NavController, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Page} from '../model/pages/page.model';
@@ -11,24 +11,31 @@ import {ReportsPage} from '../pages/reports/reports';
     templateUrl: 'app.html'
 })
 export class MyApp {
+    @ViewChild('nav') navCtrl: NavController;
+    @ViewChild('menu') menu: Menu;
+
     rootPage: any = HomePage;
     pages: Array<Page>;
 
-    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(
+        public platform: Platform,
+        public statusBar: StatusBar,
+        public splashScreen: SplashScreen
+    ) {
         platform.ready().then(() => {
             statusBar.styleDefault();
             splashScreen.hide();
         });
 
         this.pages = [
-            new Page('Home', 'ios-home', HomePage),
             new Page('Manage Locations', 'ios-map', ManageLocationsPage),
             new Page('Reports', 'md-pie', ReportsPage)
         ];
     }
 
-    openPage() {
-        //@todo, add functionality to open pages here
+    openPage(page: Page) {
+        this.menu.close();
+        this.navCtrl.push(page.component);
     }
 }
 

@@ -9,12 +9,16 @@ import {HomePage} from '../pages/home/home';
 import {LocationDetailsPage} from '../pages/location_details/location_details';
 import {LocationStorage} from '../services/location/location.storage.service';
 import {Util} from '../services/util/util.service';
+import {ManageLocationsPage} from "../pages/manage_locations/manage_locations";
+import {ReportsPage} from "../pages/reports/reports";
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
-        LocationDetailsPage
+        LocationDetailsPage,
+        ManageLocationsPage,
+        ReportsPage
     ],
     imports: [
         BrowserModule,
@@ -28,7 +32,9 @@ import {Util} from '../services/util/util.service';
     entryComponents: [
         MyApp,
         HomePage,
-        LocationDetailsPage
+        LocationDetailsPage,
+        ManageLocationsPage,
+        ReportsPage
     ],
     providers: [
         StatusBar,
