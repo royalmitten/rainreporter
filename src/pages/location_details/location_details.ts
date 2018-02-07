@@ -35,7 +35,6 @@ export class LocationDetailsPage {
         this.locationStorage.saveLocation(this.location).then(() => {
             loader.dismiss();
             this.showSuccess();
-
         }, () => {
             loader.dismiss();
             this.showError('Failed to save location. Please try again.');
@@ -64,7 +63,7 @@ export class LocationDetailsPage {
         toast.present()
 
         toast.onDidDismiss(() => {
-            this.viewCtrl.dismiss();
+            this.viewCtrl.dismiss(true);
         });
     }
 }

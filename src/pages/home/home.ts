@@ -32,14 +32,19 @@ export class HomePage {
         this.date = new Date();
         this.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         this.getDaysOfMonth();
-        this.checkLocation();
-    }
 
-    checkLocation() {
+        let loader = this.loadingCtrl.create({
+            content: 'Loading...'
+        });
+
+        loader.present();
+
         this.locationStorage.hasLocation().then(() => {
             this.promptLocationAdd = false;
+            loader.dismiss();
         }, () => {
             this.promptLocationAdd = true;
+            loader.dismiss();
         });
     }
 
@@ -94,8 +99,10 @@ export class HomePage {
         let modal = this.modalCtrl.create(LocationDetailsPage);
         modal.present();
 
-        modal.onDidDismiss(() => {
-            this.checkLocation();
+        modal.onDidDismiss((locationAdded) => {
+            if (true === locationAdded) {
+                this.promptLocationAdd = false;
+            }
         })
     }
 }
