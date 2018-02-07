@@ -41,8 +41,6 @@ export class LocationStorage {
                     locations = result;
                 }
 
-                console.log(locations);
-
                 locations.push(location);
 
                 this.storage.set(this.storageKey, locations).then(() => {
