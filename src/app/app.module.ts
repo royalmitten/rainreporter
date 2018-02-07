@@ -8,6 +8,7 @@ import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {LocationDetailsPage} from '../pages/location_details/location_details';
 import {LocationStorage} from '../services/location/location.storage.service';
+import {Util} from '../services/util/util.service';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import {LocationStorage} from '../services/location/location.storage.service';
         StatusBar,
         SplashScreen,
         LocationStorage,
+        Util,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

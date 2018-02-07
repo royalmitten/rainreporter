@@ -64,7 +64,7 @@ export class LocationDetailsPage {
         toast.present()
 
         toast.onDidDismiss(() => {
-            //go back to the previous page
+            this.viewCtrl.dismiss();
         });
     }
 }

@@ -1,12 +1,13 @@
 import {Storage} from '@ionic/storage';
-import {Injectable} from "@angular/core";
-import {Location} from "../../model/location/location.model";
+import {Injectable} from '@angular/core';
+import {Location} from '../../model/location/location.model';
+import {Util} from '../util/util.service';
 
 @Injectable()
 export class LocationStorage {
     readonly storageKey = 'locations';
 
-    constructor(private storage: Storage) {
+    constructor(private storage: Storage, private util: Util) {
     }
 
     hasLocation(): Promise<boolean> {
@@ -28,6 +29,10 @@ export class LocationStorage {
     }
 
     saveLocation(location: Location): Promise<boolean> {
+        if (!location.id) {
+            location.id = this.util.generateId();
+        }
+
         return new Promise<boolean>((resolve, reject) => {
             this.getLocations().then((result) => {
                 let locations: Array<any> = [];
