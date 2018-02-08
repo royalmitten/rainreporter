@@ -22,7 +22,6 @@ export class HomePage {
     currentDate: number;
 
     constructor(
-        private navCtrl: NavController,
         private modalCtrl: ModalController,
         private loadingCtrl: LoadingController,
         private locationStorage: LocationStorage

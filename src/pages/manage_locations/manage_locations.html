@@ -7,7 +7,11 @@
 </ion-header>
 
 <ion-content padding>
-    Managing of locations to follow soon
+    <ion-list>
+        <button ion-item detail-push *ngFor="let location of locations" (click)="viewLocation(location.id)">
+            {{ location.name }}
+        </button>
+    </ion-list>
 </ion-content>
 
 <ion-footer>
