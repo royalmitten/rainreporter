@@ -24,13 +24,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row class="header" text-center>
-                    <ion-col>Su</ion-col>
-                    <ion-col>Mo</ion-col>
-                    <ion-col>Tu</ion-col>
-                    <ion-col>We</ion-col>
-                    <ion-col>Th</ion-col>
-                    <ion-col>Fr</ion-col>
-                    <ion-col>Sa</ion-col>
+                    <ion-col *ngFor="let dayName of dayNames">{{dayName}}</ion-col>
                 </ion-row>
             </ion-grid>
 

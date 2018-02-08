@@ -16,6 +16,7 @@ export class HomePage {
     daysInLastMonth: Array<number>;
     daysInNextMonth: Array<number>;
     monthNames: Array<string>;
+    dayNames: Array<string>;
     currentMonth: string;
     currentYear: number;
     currentDate: number;
@@ -31,6 +32,7 @@ export class HomePage {
     ionViewDidLoad() {
         this.date = new Date();
         this.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        this.dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
         this.getDaysOfMonth();
 
         let loader = this.loadingCtrl.create({
