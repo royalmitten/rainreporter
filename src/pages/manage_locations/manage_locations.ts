@@ -17,7 +17,11 @@ export class ManageLocationsPage {
     ) {
     }
 
-    ionViewDidLoad() {
+    ionViewWillEnter() {
+        this.getLocations();
+    }
+
+    getLocations() {
         this.locationStorage.getLocations().then((result) => {
             if (result) {
                 this.locations = result;
@@ -44,9 +48,8 @@ export class ManageLocationsPage {
         let modal = this.modalCtrl.create(LocationDetailsPage, {'location': location});
         modal.present();
 
-        modal.onDidDismiss((locationAdded) => {
-            if (true === locationAdded) {
-            }
+        modal.onDidDismiss(() => {
+            this.getLocations();
         })
     }
 }

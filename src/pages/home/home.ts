@@ -33,19 +33,17 @@ export class HomePage {
         this.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         this.dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
         this.getDaysOfMonth();
+    }
 
-        let loader = this.loadingCtrl.create({
-            content: 'Loading...'
-        });
+    ionViewWillEnter() {
+        this.checkForLocation();
+    }
 
-        loader.present();
-
+    checkForLocation() {
         this.locationStorage.hasLocation().then(() => {
             this.promptLocationAdd = false;
-            loader.dismiss();
         }, () => {
             this.promptLocationAdd = true;
-            loader.dismiss();
         });
     }
 
