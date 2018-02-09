@@ -33,7 +33,7 @@
                     <ion-col *ngFor="let day of daysInLastMonth" class="not-current-month">{{day}}</ion-col>
 
                     <ion-col *ngFor="let day of daysInThisMonth">
-                        <ion-badge mode="ios" color="secondary" *ngIf="currentDate === day">{{day}}</ion-badge>
+                        <ion-badge mode="ios" color="disabled" *ngIf="currentDate === day">{{day}}</ion-badge>
                         <span *ngIf="currentDate !== day">{{day}}</span>
                     </ion-col>
 

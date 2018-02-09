@@ -9,7 +9,7 @@ import {ModalController} from "ionic-angular";
     templateUrl: 'manage_locations.html'
 })
 export class ManageLocationsPage {
-    locations: Array<Location>
+    locations: Array<Location>;
 
     constructor(
         private locationStorage: LocationStorage,
