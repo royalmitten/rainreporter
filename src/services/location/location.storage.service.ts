@@ -2,6 +2,7 @@ import {Storage} from '@ionic/storage';
 import {Injectable} from '@angular/core';
 import {Location} from '../../model/location/location.model';
 import {Util} from '../util/util.service';
+import * as _ from 'lodash';
 
 @Injectable()
 export class LocationStorage {
@@ -20,6 +21,28 @@ export class LocationStorage {
                 }
             }, () => {
                 reject(false);
+            });
+        });
+    }
+
+    getLocation(locationId: String): Promise<Location | null> {
+        return new Promise<Location | null>((resolve, reject) => {
+            this.getLocations().then((result) => {
+                if (!result) {
+                    reject(null);
+                }
+
+                let location = _.find(result, (location: Location) => {
+                    return location.id === locationId;
+                });
+
+                if (_.isEmpty(location)) {
+                    reject(null);
+                }
+
+                resolve(location);
+            }, () => {
+                reject(null);
             });
         });
     }

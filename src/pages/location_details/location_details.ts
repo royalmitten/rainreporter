@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoadingController, ToastController, ViewController} from 'ionic-angular';
+import {LoadingController, NavParams, ToastController, ViewController} from 'ionic-angular';
 import {Location} from '../../model/location/location.model'
 import {LocationStorage} from "../../services/location/location.storage.service";
 
@@ -12,10 +12,16 @@ export class LocationDetailsPage {
 
     constructor(
         public viewCtrl: ViewController,
+        public params: NavParams,
         private toastCtrl: ToastController,
         private loadingCtrl: LoadingController,
         private locationStorage: LocationStorage
     ) {
+        let location = params.get('location');
+
+        if (location) {
+            this.location = location;
+        }
     }
 
     updateLocation() {
