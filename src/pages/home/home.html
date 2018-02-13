@@ -1,15 +1,9 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-buttons>
-            <button ion-button *ngIf="promptLocationAdd === false">
-                <ion-icon name="add"></ion-icon>
-                &nbsp;Add Rainfall
-            </button>
-            <button ion-button (click)="addLocation()" *ngIf="promptLocationAdd === true">
-                <ion-icon name="add"></ion-icon>
-                &nbsp;Add Location
-            </button>
-        </ion-buttons>
+        <ion-title>
+            <ion-icon name="ios-cloudy"></ion-icon> &nbsp;
+            RainReporter
+        </ion-title>
 
         <button ion-button menuToggle right>
             <ion-icon name="menu"></ion-icon>
@@ -56,6 +50,12 @@
                     <ion-col *ngFor="let day of daysInNextMonth" class="not-current-month">{{day}}</ion-col>
                 </ion-row>
             </ion-grid>
+
+            <ion-fab right bottom>
+                <button ion-fab mini color="primary" (click)="addRainfall()">
+                    <ion-icon name="add"></ion-icon>
+                </button>
+            </ion-fab>
         </div>
     </ng-container>
 

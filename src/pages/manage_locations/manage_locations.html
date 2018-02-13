@@ -6,7 +6,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding-top>
+<ion-content>
     <ion-list>
         <button ion-item detail-push *ngFor="let location of locations" (click)="updateLocation(location.id)">
             {{location.name}} ({{location.suburb}})

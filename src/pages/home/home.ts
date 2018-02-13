@@ -117,4 +117,8 @@ export class HomePage {
             // show error message
         });
     }
+
+    addRainfall() {
+
+    }
 }
