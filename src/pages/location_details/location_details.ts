@@ -40,10 +40,26 @@ export class LocationDetailsPage {
 
         this.locationStorage.saveLocation(this.location).then(() => {
             loader.dismiss();
-            this.showSuccess();
+            this.showSuccess('Location has been successfully saved.');
         }, () => {
             loader.dismiss();
             this.showError('Failed to save location. Please try again.');
+        });
+    }
+
+    deleteLocation() {
+        let loader = this.loadingCtrl.create({
+            content: 'Deleting...'
+        });
+
+        loader.present();
+
+        this.locationStorage.deleteLocation(this.location).then(() => {
+            loader.dismiss();
+            this.showSuccess('Location has been successfully deleted.');
+        }, () => {
+            loader.dismiss();
+            this.showError('Failed to delete location. Please try again.');
         });
     }
 
@@ -58,15 +74,15 @@ export class LocationDetailsPage {
         toast.present()
     }
 
-    private showSuccess() {
+    private showSuccess(message: string) {
         let toast = this.toastCtrl.create({
-            message: 'Location has been successfully saved.',
+            message: message,
             showCloseButton: true,
             closeButtonText: 'Ok!',
             cssClass: 'toast-success'
         });
 
-        toast.present()
+        toast.present();
 
         toast.onDidDismiss(() => {
             this.viewCtrl.dismiss(true);

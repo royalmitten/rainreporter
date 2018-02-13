@@ -14,7 +14,7 @@ export class LocationStorage {
     hasLocation(): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
             this.getLocations().then((result) => {
-                if (result) {
+                if (result && result.length) {
                     resolve(true);
                 } else {
                     reject(false);
@@ -64,7 +64,34 @@ export class LocationStorage {
                     locations = result;
                 }
 
-                locations.push(location);
+                let index = _.findIndex(locations, {id: location.id});
+
+                if (-1 === index) {
+                    locations.push(location);
+                } else {
+                    locations.splice(index, 1, location);
+                }
+
+                this.storage.set(this.storageKey, locations).then(() => {
+                    resolve(true);
+                }, () => {
+                    reject(false);
+                });
+
+            }, () => {
+                reject(false);
+            });
+        });
+    }
+
+    deleteLocation(location: Location): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.getLocations().then((locations) => {
+                if (!locations) {
+                   reject(false)
+                }
+
+                _.remove(locations, {id: location.id});
 
                 this.storage.set(this.storageKey, locations).then(() => {
                     resolve(true);

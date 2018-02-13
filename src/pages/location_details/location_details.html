@@ -38,7 +38,7 @@
     <ion-grid no-padding>
         <ion-row color="secondary" class="footer-buttons">
             <ion-col class="column-danger" *ngIf="location.id">
-                <button ion-button icon-left block clear color="light">
+                <button ion-button icon-left block clear color="light" (click)="deleteLocation()">
                     <ion-icon name="md-trash"></ion-icon>
                     Delete
                 </button>
@@ -46,7 +46,8 @@
             <ion-col class="column-positive">
                 <button ion-button icon-left block clear color="light" (click)="updateLocation()">
                     <ion-icon name="md-checkmark"></ion-icon>
-                    Save
+                    <ng-container *ngIf="location.id">Update</ng-container>
+                    <ng-container *ngIf="!location.id">Save</ng-container>
                 </button>
             </ion-col>
         </ion-row>

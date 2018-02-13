@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {LoadingController, NavController} from 'ionic-angular';
 import {LocationStorage} from '../../services/location/location.storage.service';
 import {ModalController} from 'ionic-angular';
 import {LocationDetailsPage} from '../location_details/location_details';
@@ -23,7 +22,6 @@ export class HomePage {
 
     constructor(
         private modalCtrl: ModalController,
-        private loadingCtrl: LoadingController,
         private locationStorage: LocationStorage
     ) {
     }
