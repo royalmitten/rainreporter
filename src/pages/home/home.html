@@ -1,13 +1,13 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>
-            <ion-icon name="ios-cloudy"></ion-icon> &nbsp;
-            RainReporter
-        </ion-title>
-
-        <ion-buttons end>
-            <button margin-right ion-button icon-only>
-                Add Rainfall
+        <ion-buttons>
+            <button ion-button *ngIf="promptLocationAdd === false">
+                <ion-icon name="add"></ion-icon>
+                &nbsp;Add Rainfall
+            </button>
+            <button ion-button (click)="addLocation()" *ngIf="promptLocationAdd === true">
+                <ion-icon name="add"></ion-icon>
+                &nbsp;Add Location
             </button>
         </ion-buttons>
 
