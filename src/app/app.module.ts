@@ -24,7 +24,7 @@ import {ReportsPage} from "../pages/reports/reports";
         BrowserModule,
         IonicModule.forRoot(MyApp, {
             scrollAssist: false,
-            autoFocusAssist: false
+            autoFocusAssist: true
         }),
         IonicStorageModule.forRoot()
     ],
