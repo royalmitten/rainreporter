@@ -27,7 +27,8 @@ export class ManageLocationsPage {
                 this.locations = result;
             }
         }, () => {
-            // handle error
+            this.locations = [];
+            // show error message
         });
     }
 

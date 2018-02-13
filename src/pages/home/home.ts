@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {LocationStorage} from '../../services/location/location.storage.service';
 import {ModalController} from 'ionic-angular';
 import {LocationDetailsPage} from '../location_details/location_details';
+import {Location} from "../../model/location/location.model";
 
 @Component({
     selector: 'page-home',
@@ -9,7 +10,8 @@ import {LocationDetailsPage} from '../location_details/location_details';
 })
 export class HomePage {
     promptLocationAdd: boolean;
-    locations: Array<any>; //@todo, use a location class for this
+    locations: Array<Location>;
+    locationId: string;
     date: Date;
     daysInThisMonth: Array<number>;
     daysInLastMonth: Array<number>;
@@ -40,6 +42,7 @@ export class HomePage {
     checkForLocation() {
         this.locationStorage.hasLocation().then(() => {
             this.promptLocationAdd = false;
+            this.getLocations();
         }, () => {
             this.promptLocationAdd = true;
         });
@@ -99,7 +102,19 @@ export class HomePage {
         modal.onDidDismiss((locationAdded) => {
             if (true === locationAdded) {
                 this.promptLocationAdd = false;
+                this.getLocations();
             }
         })
+    }
+
+    getLocations() {
+        this.locationStorage.getLocations().then((result) => {
+            if (result) {
+                this.locations = result;
+            }
+        }, () => {
+            this.locations = [];
+            // show error message
+        });
     }
 }

@@ -9,7 +9,7 @@ page-home {
     }
 
     .days {
-      height: calc(100vh - 185px); //185px has already been taken (header + top content)
+      height: calc(100vh - 200px); //200px has already been taken (header + top content)
 
       .not-current-month {
         color: map-get($colors, disabled);
@@ -20,6 +20,7 @@ page-home {
       }
 
       ion-col {
+        min-height: 50px;
         -webkit-box-flex: 0;
         -webkit-flex: 0 0 8.33333%;
         -ms-flex: 0 0 8.33333%;

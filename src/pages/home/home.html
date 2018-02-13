@@ -4,14 +4,30 @@
             <ion-icon name="ios-cloudy"></ion-icon> &nbsp;
             RainReporter
         </ion-title>
+
+        <ion-buttons end>
+            <button margin-right ion-button icon-only>
+                Add Rainfall
+            </button>
+        </ion-buttons>
+
         <button ion-button menuToggle right>
             <ion-icon name="menu"></ion-icon>
         </button>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding-top>
+<ion-content>
     <ng-container *ngIf="promptLocationAdd === false">
+        <ion-list no-margin no-padding>
+            <ion-item>
+                <ion-label>Location:</ion-label>
+                <ion-select [(ngModel)]="locationId" submitText="Ok" cancelText="Cancel">
+                    <ion-option *ngFor="let location of locations; let first = first;" [selected]="first" value="{{location.id}}">{{location.name}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
         <div class="calender">
             <ion-grid>
                 <ion-row class="header" margin-bottom text-center>
@@ -41,16 +57,10 @@
                 </ion-row>
             </ion-grid>
         </div>
-
-        <ion-fab right bottom>
-            <button ion-fab mini color="secondary">
-                <ion-icon name="add"></ion-icon>
-            </button>
-        </ion-fab>
     </ng-container>
 
     <ng-container *ngIf="promptLocationAdd === true">
-        <p padding-horizontal>
+        <p padding>
             Hi there! Welcome! <br/><br/>
             It looks like you're new here. Before you can start reporting rainfall, please capture at least one location.
             Every time rainfall is reported, the location where the rainfall took place must be selected.
